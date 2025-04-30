@@ -1,8 +1,6 @@
 #include <iostream>
 
-
 using namespace std;
-
 
 class Stack
 {
@@ -11,7 +9,6 @@ private:
     int top;
     int size;
     int count;
-
 
 public:
     Stack(int size)
@@ -31,8 +28,8 @@ public:
     bool isEmpty();
     bool isFull();
     void Display();
+    void checkPalindrome();
 };
-
 
 void Stack::Push()
 {
@@ -53,7 +50,6 @@ void Stack::Push()
     this->count++;
 }
 
-
 void Stack::Display()
 {
     if (this->top == -1)
@@ -72,7 +68,6 @@ void Stack::Display()
     cout << endl;
     cout << "-------------------------------" << endl;
 }
-
 
 void Stack::Pop()
 {
@@ -94,18 +89,36 @@ bool Stack::isEmpty()
     return this->top == -1;
 }
 
-
 bool Stack::isFull()
 {
     return this->top == (size - 1);
 }
 
+void Stack::checkPalindrome()
+{
+    int number, original, reversed = 0, rem;
+    cout << "-------------------------------" << endl;
+    cout << "Enter a number to check: ";
+    cin >> number;
+    original = number;
+    while (number != 0)
+    {
+        rem = number % 10;
+        reversed = reversed * 10 + rem;
+        number /= 10;
+    }
+    cout << "-------------------------------" << endl;
+    if (original == reversed)
+        cout << "Number is Palindrome." << endl;
+    else
+        cout << "Number is Not Palindrome." << endl;
+    cout << "-------------------------------" << endl;
+}
 
 int main()
 {
     Stack s1(5);
     int choice;
-
 
     do
     {
@@ -115,10 +128,10 @@ int main()
         cout << "Enter 3 for isEmpty : " << endl;
         cout << "Enter 4 for isFull : " << endl;
         cout << "Enter 5 for Display : " << endl;
+        cout << "Enter 6 for Palindrome Check : " << endl;
         cout << "Enter 0 for Exit : " << endl;
         cout << "Enter Your Choice : ";
         cin >> choice;
-
 
         switch (choice)
         {
@@ -158,6 +171,9 @@ int main()
             break;
         case 5:
             s1.Display();
+            break;
+        case 6:
+            s1.checkPalindrome();
             break;
         case 0:
             cout << "-------------------------------" << endl;
